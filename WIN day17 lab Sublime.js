@@ -10,35 +10,40 @@
 */
 
 var slideshow = {
-    var photoList = ['photo1', 'photo2', 'photo3', 'photo4'],
-    var currentPhotoIndex = 0,
+    photoList:['photo0', 'photo1', 'photo2', 'photo3', 'photo4'],
 
- //the next photo function
-function nextPhoto() {
-    if (this.currentPhotoIndex < this.photoList.length-1) {
-    	console.log(this.photoLit[this.currentPhotoIndex+1]);
-    	return this.currentPhotoIndex++ ;
-    }
-    else{
-    	console.log('End of Slideshow');
-    }
+    currentPhotoIndex: 0,
 
-},
+    nextPhoto: function(){
+        if(this.currentPhotoIndex < this.photoList.length-1){
+            this.currentPhotoIndex++;
+        }else if (this.currentPhotoIndex >= this.photoList.length-1){
+            return 'end of slideshow'
+        }
+        return this.photoList[this.currentPhotoIndex];
+    },
 
-//the previous photo function
-function prevPhoto() {
-	if (this.currentPhotoIndex > 0) {
-		console.log(this.photoList[this.currentPhotoIndex-1]);
-		return this.currentPhotoIndex-- ;
-	}
-	else{
-		console.log('End of Slideshow');
-	}
-},
+    prevPhoto: function(){
+        if(this.currentPhotoIndex > 0){
+            this.currentPhotoIndex--;
+        }else if (this.currentPhotoIndex === 0){
+            return 'beginning of slideshow'
+        }
+        return this.photoList[this.currentPhotoIndex];
+    },
 
-//the get current photo function
-function getCurrentPhoto() {
-	console.log(this.photoList[this.currentPhotoIndex]);
-	return this.photoList[this.currentPhotoIndex];
-},
+    getCurrentPhoto: function(){
+        return this.photoList[this.currentPhotoIndex];
+    },
+
+    playInterval: null,
+    play: function(){this.playInterval = setInterval(this.nextPhoto.bind(this), 2000)},
+    pause: function(){clearInterval (this.playInterval)}
+
 }
+
+console.log(currentPhotoIndex)
+
+
+
+
